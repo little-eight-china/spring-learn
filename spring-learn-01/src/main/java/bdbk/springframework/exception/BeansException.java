@@ -5,7 +5,7 @@ package bdbk.springframework.exception;
  * @author little8
  * @since 2022-03-20
  */
-public class BeansException extends RuntimeException, InstantiationException, IllegalAccessException {
+public class BeansException extends RuntimeException {
 
     public BeansException(String msg) {
         super(msg);

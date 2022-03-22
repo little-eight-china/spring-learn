@@ -1,7 +1,7 @@
 package bdbk.springframework.test;
 
-import bdbk.springframework.factory.BeanFactory;
 import bdbk.springframework.factory.config.BeanDefinition;
+import bdbk.springframework.factory.support.DefaultListableBeanFactory;
 import bdbk.springframework.test.bean.UserService;
 import org.junit.Test;
 
@@ -15,10 +15,10 @@ public class ApiTest {
     @Test
     public void test_BeanFactory(){
         // 1.初始化 BeanFactory
-        BeanFactory beanFactory = new BeanFactory();
+        DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 
-        // 2.注入bean
-        BeanDefinition beanDefinition = new BeanDefinition(new UserService());
+        // 2.注册bean
+        BeanDefinition beanDefinition = new BeanDefinition(new UserService().getClass());
         beanFactory.registerBeanDefinition("userService", beanDefinition);
 
         // 3.获取bean
