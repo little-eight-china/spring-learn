@@ -11,6 +11,10 @@ public class BeanDefinition {
 
     private Class beanClass;
 
+    boolean isSingleton();
+
+	boolean isPrototype();
+
     public BeanDefinition(Class beanClass) {
         this.beanClass = beanClass;
     }

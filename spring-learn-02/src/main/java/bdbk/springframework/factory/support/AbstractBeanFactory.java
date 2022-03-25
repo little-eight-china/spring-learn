@@ -10,10 +10,14 @@ import bdbk.springframework.factory.config.BeanDefinition;
  * @author little8
  * @since 2022-03-21
  */
-public abstract class AbstractBeanFactory implements BeanFactory {
+public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
 
 	@Override
 	public Object getBean(String name) throws BeansException {
+		Object bean = getSingleton(name);
+        if (bean != null) {
+            return bean;
+        }
 		BeanDefinition beanDefinition = getBeanDefinition(name);
 		return createBean(name, beanDefinition);
 	}
