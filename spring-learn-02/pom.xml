@@ -14,16 +14,11 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
-    <name>spring-learn-01</name>
+    <name>spring-learn-02</name>
     <description>
         learn spring
     </description>
 
-    <build>
-        <finalNAme>111</finalNAme>
-        <sourceDe>
-    </build>
-  
     <developers>
         <developer>
             <id>spring-learn</id>

@@ -11,9 +11,25 @@ public class BeanDefinition {
 
     private Class beanClass;
 
-    boolean isSingleton();
+    private boolean isSingleton;
 
-	boolean isPrototype();
+    private boolean isPrototype;
+
+    public boolean isSingleton() {
+        return isSingleton;
+    }
+
+    public void setSingleton(boolean singleton) {
+        isSingleton = singleton;
+    }
+
+    public boolean isPrototype() {
+        return isPrototype;
+    }
+
+    public void setPrototype(boolean prototype) {
+        isPrototype = prototype;
+    }
 
     public BeanDefinition(Class beanClass) {
         this.beanClass = beanClass;

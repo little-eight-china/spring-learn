@@ -1,7 +1,5 @@
 package bdbk.springframework.factory.support;
 
-import bdbk.springframework.beans.factory.config.SingletonBeanRegistry;
-
 import java.util.HashMap;
 import java.util.Map;
 

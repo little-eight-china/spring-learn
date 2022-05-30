@@ -8,10 +8,8 @@ import bdbk.springframework.factory.BeanFactory;
  * @since 2022-03-21
  */
 public interface ListableBeanFactory extends BeanFactory{
-    
-    // 对于给定的名字是否含有BeanDefinition
+
     boolean containsBeanDefinition(String beanName);
 
-    // 返回工厂的BeanDefinition总数
     int getBeanDefinitionCount();
 }
