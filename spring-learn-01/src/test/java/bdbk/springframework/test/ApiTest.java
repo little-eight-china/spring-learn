@@ -6,7 +6,7 @@ import bdbk.springframework.test.bean.UserService;
 import org.junit.Test;
 
 /**
- * 
+ *
  * @author little8
  * @since 2022-03-20
  */
@@ -18,7 +18,7 @@ public class ApiTest {
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 
         // 2.注册bean
-        BeanDefinition beanDefinition = new BeanDefinition(new UserService().getClass());
+        BeanDefinition beanDefinition = new BeanDefinition(UserService.class);
         beanFactory.registerBeanDefinition("userService", beanDefinition);
 
         // 3.获取bean

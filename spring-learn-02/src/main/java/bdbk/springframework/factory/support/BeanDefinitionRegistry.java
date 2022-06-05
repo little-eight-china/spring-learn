@@ -11,8 +11,8 @@ public interface BeanDefinitionRegistry {
     /**
 	 * 向注册表中注BeanDefinition
 	 *
-	 * @param beanName
-	 * @param beanDefinition
+	 * @param beanName 容器名字
+	 * @param beanDefinition 容器结构
 	 */
 	void registerBeanDefinition(String beanName, BeanDefinition beanDefinition);
 }
