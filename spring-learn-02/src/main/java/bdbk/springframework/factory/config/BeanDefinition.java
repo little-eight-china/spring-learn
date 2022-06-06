@@ -15,7 +15,6 @@ public class BeanDefinition {
 
     private PropertyValues propertyValues;
 
-
     private boolean isSingleton;
 
     private boolean isPrototype;

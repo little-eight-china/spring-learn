@@ -7,6 +7,9 @@ import bdbk.springframework.factory.support.DefaultListableBeanFactory;
 import bdbk.springframework.test.bean.UserService;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
 /**
  *
  * @author little8
@@ -35,7 +38,7 @@ public class ApiTest {
         // 4.获取bean
         UserService userService = (UserService) beanFactory.getBean("userService");
         userService.queryUserInfo();
-        System.out.println(userService == beanFactory.getBean("userService"));
+        assertEquals(userService, beanFactory.getBean("userService"));
     }
 
     /**
@@ -59,7 +62,7 @@ public class ApiTest {
         // 4.获取bean
         UserService userService = (UserService) beanFactory.getBean("userService");
         userService.queryUserInfo();
-        System.out.println(userService == beanFactory.getBean("userService"));
+        assertNotEquals(userService, beanFactory.getBean("userService"));
     }
 
 }
