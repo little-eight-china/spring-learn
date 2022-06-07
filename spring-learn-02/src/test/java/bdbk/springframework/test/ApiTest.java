@@ -1,9 +1,9 @@
 package bdbk.springframework.test;
 
-import bdbk.springframework.factory.PropertyValue;
-import bdbk.springframework.factory.PropertyValues;
-import bdbk.springframework.factory.config.BeanDefinition;
-import bdbk.springframework.factory.support.DefaultListableBeanFactory;
+import bdbk.springframework.beans.PropertyValue;
+import bdbk.springframework.beans.PropertyValues;
+import bdbk.springframework.beans.factory.config.BeanDefinition;
+import bdbk.springframework.beans.factory.support.DefaultListableBeanFactory;
 import bdbk.springframework.test.bean.UserService;
 import org.junit.Test;
 

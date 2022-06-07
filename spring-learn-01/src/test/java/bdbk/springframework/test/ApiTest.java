@@ -1,7 +1,7 @@
 package bdbk.springframework.test;
 
-import bdbk.springframework.factory.config.BeanDefinition;
-import bdbk.springframework.factory.support.DefaultListableBeanFactory;
+import bdbk.springframework.beans.factory.config.BeanDefinition;
+import bdbk.springframework.beans.factory.support.DefaultListableBeanFactory;
 import bdbk.springframework.test.bean.UserService;
 import org.junit.Test;
 
