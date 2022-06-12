@@ -53,7 +53,7 @@ public class BeanDefinition {
 
 ```
 
-在doCreateBean时，给bean填充进去
+在doCreateBean时，给bean填充进去，args就是属性的值，通过createBeanInstance方式去创建。
 
 ```java
 	protected Object doCreateBean(String beanName, BeanDefinition beanDefinition, Object[] args) throws BeansException {
@@ -71,6 +71,40 @@ public class BeanDefinition {
 	}
 
 ```
+```java
+/**
+ * 通过构造器+反射来处理args
+ */
+protected Object createBeanInstance(BeanDefinition beanDefinition, String beanName, Object[] args) {
+		Constructor constructorToUse = null;
+		Class<?> beanClass = beanDefinition.getBeanClass();
+		Constructor<?>[] declaredConstructors = beanClass.getDeclaredConstructors();
+		for (Constructor ctor : declaredConstructors) {
+			if (null != args && ctor.getParameterTypes().length == args.length) {
+				constructorToUse = ctor;
+				break;
+			}
+		}
+
+		return getInstantiationStrategy().instantiate(beanDefinition, beanName, constructorToUse, args);
+	}
+
+public Object instantiate(BeanDefinition beanDefinition, String beanName, Constructor ctor, Object[] args) throws BeansException {
+        Class clazz = beanDefinition.getBeanClass();
+        try {
+        if (null != ctor) {
+        return clazz.getDeclaredConstructor(ctor.getParameterTypes()).newInstance(args);
+        } else {
+        return clazz.getDeclaredConstructor().newInstance();
+        }
+        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+        throw new BeansException("Failed to instantiate [" + clazz.getName() + "]", e);
+        }
+        }
+
+```
+
+当然也提供了applyPropertyValues方法作为扩展性更好的属性注入
 
 ```java
 

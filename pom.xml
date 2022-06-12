@@ -24,6 +24,8 @@
     <modules>
         <module>./spring-learn-01</module>
         <module>./spring-learn-02</module>
+        <module>./spring-learn-03</module>
+        <module>./spring-learn-04</module>
     </modules>
 
 

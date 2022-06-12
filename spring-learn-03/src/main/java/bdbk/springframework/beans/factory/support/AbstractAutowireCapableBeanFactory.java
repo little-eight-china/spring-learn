@@ -28,12 +28,14 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		try {
 			bean = createBeanInstance(beanDefinition, beanName, args);
 			// 给 Bean 填充属性
-			applyPropertyValues(beanName, bean, beanDefinition);
+			populateBean(beanName, beanDefinition, bean);
 		} catch (Exception e) {
 			throw new BeansException("Instantiation of bean failed", e);
 		}
 
-		addSingleton(beanName, bean);
+		if (beanDefinition.isSingleton()) {
+			addSingleton(beanName, bean);
+		}
 		return bean;
 	}
 
@@ -51,10 +53,14 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		return getInstantiationStrategy().instantiate(beanDefinition, beanName, constructorToUse, args);
 	}
 
+	protected void populateBean(String beanName, BeanDefinition beanDefinition, Object bean) {
+		this.applyPropertyValues(beanName, beanDefinition, bean);
+	}
+
 	/**
 	 * Bean 属性填充
 	 */
-	protected void applyPropertyValues(String beanName, Object bean, BeanDefinition beanDefinition) {
+	protected void applyPropertyValues(String beanName, BeanDefinition beanDefinition, Object bean) {
 		try {
 			PropertyValues propertyValues = beanDefinition.getPropertyValues();
 			for (PropertyValue propertyValue : propertyValues.getPropertyValues()) {

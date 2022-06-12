@@ -1,7 +1,7 @@
 package bdbk.springframework.util;
 
 /**
- * class工具栏
+ * class工具类
  * @author little8
  * @since 2022-06-06
  */

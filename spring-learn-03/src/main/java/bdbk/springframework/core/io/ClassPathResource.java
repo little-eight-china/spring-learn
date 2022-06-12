@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 /**
- * 资源接口
+ * 资源流的实现类
  * @author little8
  * @since 2022-06-06
  */

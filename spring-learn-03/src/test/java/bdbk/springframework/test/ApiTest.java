@@ -31,7 +31,7 @@ public class ApiTest {
         reader.loadBeanDefinitions("classpath:spring.xml");
 
         // 3. 获取Bean对象调用方法
-        UserService userService = (UserService) beanFactory.getBean("userService", UserService.class);
+        UserService userService = (UserService) beanFactory.getBean("userService");
         userService.queryUserInfo();
     }
 }

@@ -6,7 +6,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * 资源接口
+ * 默认装载资源的类，目前提供装载资源的方式只有从资源包下读取xml文件
  * @author little8
  * @since 2022-06-06
  */
