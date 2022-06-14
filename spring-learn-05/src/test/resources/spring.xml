@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean id="userService" class="bdbk.springframework.test.bean.UserService" init-method="initDataMethod" destroy-method="destroyMethod">
+        <property name="age" value="18"/>
+        <property name="name" value="mike"/>
+    </bean>
+
+    <bean class="bdbk.springframework.test.support.MyBeanPostProcessor"/>
+    <bean class="bdbk.springframework.test.support.MyInstantiationAwareBeanPostProcessor"/>
+
+
+    <bean class="bdbk.springframework.test.event.ContextRefreshedEventListener"/>
+    <bean class="bdbk.springframework.test.event.CustomEventListener"/>
+    <bean class="bdbk.springframework.test.event.ContextClosedEventListener"/>
+
+</beans>
