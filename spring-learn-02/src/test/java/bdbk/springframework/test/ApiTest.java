@@ -9,17 +9,10 @@ import bdbk.springframework.test.bean.UserDao;
 import bdbk.springframework.test.bean.UserService;
 import org.junit.Test;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
-/**
- *
- * @author little8
- * @since 2022-03-20
- */
+
 public class ApiTest {
 
     /**
@@ -59,7 +52,6 @@ public class ApiTest {
         servicePropertyValues.addPropertyValue(new PropertyValue("name", "mike"));
         servicePropertyValues.addPropertyValue(new PropertyValue("userDao",new BeanReference("userDao")));
         BeanDefinition beanDefinition = new BeanDefinition(UserService.class, servicePropertyValues);
-        beanDefinition.setSingleton(true);
         beanFactory.registerBeanDefinition("userService", beanDefinition);
 
         // 4.获取UserService的bean
@@ -83,7 +75,6 @@ public class ApiTest {
 
         // 3. UserService 注入bean
         BeanDefinition beanDefinition = new BeanDefinition(UserService.class, propertyValues);
-        beanDefinition.setSingleton(true);
         beanFactory.registerBeanDefinition("userService", beanDefinition);
 
         // 4.获取bean
@@ -107,7 +98,7 @@ public class ApiTest {
 
         // 3. UserService 注入bean
         BeanDefinition beanDefinition = new BeanDefinition(UserService.class, propertyValues);
-        beanDefinition.setPrototype(true);
+        beanDefinition.setScope("prototype");
         beanFactory.registerBeanDefinition("userService", beanDefinition);
 
         // 4.获取bean

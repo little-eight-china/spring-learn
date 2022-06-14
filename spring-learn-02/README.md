@@ -12,9 +12,19 @@
 
 public class BeanDefinition {
 
+    private String scope;
+    
     private boolean isSingleton;
 
     private boolean isPrototype;
+
+    public boolean isSingleton() {
+        return SCOPE_SINGLETON.equals(this.scope) || "".equals(this.scope) || null == this.scope;
+    }
+
+    public boolean isPrototype() {
+        return SCOPE_PROTOTYPE.equals(this.scope);
+    }
 
     // ...
 }

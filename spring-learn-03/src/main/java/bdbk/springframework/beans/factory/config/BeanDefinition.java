@@ -10,10 +10,13 @@ import bdbk.springframework.beans.PropertyValues;
 
 @SuppressWarnings({"rawtypes"})
 public class BeanDefinition {
-
+    String SCOPE_SINGLETON = "singleton";
+    String SCOPE_PROTOTYPE = "prototype";
     private Class beanClass;
 
     private PropertyValues propertyValues;
+
+    private String scope;
 
     private boolean isSingleton;
 
@@ -29,21 +32,22 @@ public class BeanDefinition {
         this.propertyValues = propertyValues != null ? propertyValues : new PropertyValues();
     }
 
-    public boolean isSingleton() {
-        return isSingleton;
+    public String getScope() {
+        return this.scope;
     }
 
-    public void setSingleton(boolean singleton) {
-        isSingleton = singleton;
+    public void setScope(String scope) {
+        this.scope = scope;
+    }
+
+    public boolean isSingleton() {
+        return SCOPE_SINGLETON.equals(this.scope) || "".equals(this.scope) || null == this.scope;
     }
 
     public boolean isPrototype() {
-        return isPrototype;
+        return SCOPE_PROTOTYPE.equals(this.scope);
     }
 
-    public void setPrototype(boolean prototype) {
-        isPrototype = prototype;
-    }
 
     public Class getBeanClass() {
         return beanClass;

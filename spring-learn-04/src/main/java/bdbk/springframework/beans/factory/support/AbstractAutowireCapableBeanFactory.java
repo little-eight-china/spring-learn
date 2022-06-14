@@ -8,10 +8,8 @@ import bdbk.springframework.beans.factory.config.*;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
 
-import java.beans.PropertyDescriptor;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
-import java.util.Iterator;
 
 /**
  * 具备实例化bean能力的抽象工厂
@@ -51,7 +49,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 
 		if (beanDefinition.isSingleton()) {
-			addSingleton(beanName, bean);
+			registerSingleton(beanName, bean);
 		}
 		return bean;
 	}

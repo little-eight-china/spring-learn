@@ -11,7 +11,7 @@ import bdbk.springframework.beans.factory.config.BeanDefinition;
  * @author little8
  * @since 2022-03-21
  */
-public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry, ListableBeanFactory {
+public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry, ConfigurableListableBeanFactory {
 
 	private final Map<String, BeanDefinition> beanDefinitionMap = new HashMap<>();
 

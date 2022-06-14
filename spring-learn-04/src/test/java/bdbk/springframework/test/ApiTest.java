@@ -14,11 +14,6 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
-/**
- *
- * @author little8
- * @since 2022-03-20
- */
 public class ApiTest {
 
     /**

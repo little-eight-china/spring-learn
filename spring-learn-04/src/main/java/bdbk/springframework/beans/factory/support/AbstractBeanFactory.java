@@ -4,7 +4,6 @@ import bdbk.springframework.beans.exception.BeansException;
 import bdbk.springframework.beans.factory.BeanFactory;
 import bdbk.springframework.beans.factory.config.BeanDefinition;
 import bdbk.springframework.beans.factory.config.BeanPostProcessor;
-import bdbk.springframework.beans.factory.config.ConfigurableBeanFactory;
 import bdbk.springframework.util.ClassUtils;
 
 import java.util.ArrayList;

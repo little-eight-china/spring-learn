@@ -5,11 +5,7 @@ import bdbk.springframework.beans.factory.support.DefaultListableBeanFactory;
 import bdbk.springframework.test.bean.UserService;
 import org.junit.Test;
 
-/**
- *
- * @author little8
- * @since 2022-03-20
- */
+
 public class ApiTest {
 
     @Test

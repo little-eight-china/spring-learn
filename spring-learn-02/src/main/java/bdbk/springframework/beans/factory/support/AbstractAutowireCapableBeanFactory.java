@@ -33,7 +33,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			throw new BeansException("Instantiation of bean failed", e);
 		}
 		if (beanDefinition.isSingleton()) {
-			addSingleton(beanName, bean);
+			registerSingleton(beanName, bean);
 		}
 		return bean;
 	}

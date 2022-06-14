@@ -6,11 +6,6 @@ package bdbk.springframework.beans.factory.config;
  * @since 2022-06-09
  */
 public interface ConfigurableBeanFactory {
-
-    String SCOPE_SINGLETON = "singleton";
-
-    String SCOPE_PROTOTYPE = "prototype";
-
     void addBeanPostProcessor(BeanPostProcessor beanPostProcessor);
 
     int getBeanPostProcessorCount();
