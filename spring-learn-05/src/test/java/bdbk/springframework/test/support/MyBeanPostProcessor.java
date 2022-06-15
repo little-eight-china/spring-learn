@@ -2,7 +2,6 @@ package bdbk.springframework.test.support;
 
 import bdbk.springframework.beans.exception.BeansException;
 import bdbk.springframework.beans.factory.config.BeanPostProcessor;
-import bdbk.springframework.test.bean.UserDao;
 import bdbk.springframework.test.bean.UserService;
 
 public class MyBeanPostProcessor implements BeanPostProcessor {
@@ -14,14 +13,13 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
             userService.setName("tony");
         }
 
-        System.out.println("7、BeanPostProcessor -- postProcessBeforeInitialization");
-
+        System.out.println(String.format("[%s]7、BeanPostProcessor -- postProcessBeforeInitialization%n", beanName));
         return bean;
     }
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("10、BeanPostProcessor -- postProcessAfterInitialization");
+        System.out.println(String.format("[%s]10、BeanPostProcessor -- postProcessAfterInitialization", beanName));
         return bean;
     }
 

@@ -58,22 +58,22 @@ public class UserService implements BeanFactoryAware, BeanClassLoaderAware, Bean
 
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        System.out.println("6、BeanFactoryAware -- setBeanFactory");
+        System.out.println("[userService]6、BeanFactoryAware -- setBeanFactory");
     }
 
     @Override
     public void setBeanClassLoader(ClassLoader classLoader) {
-        System.out.println("6、BeanClassLoaderAware-- setBeanClassLoader ");
+        System.out.println("[userService]6、BeanClassLoaderAware-- setBeanClassLoader ");
     }
 
     @Override
     public void setBeanName(String name) {
-        System.out.println("6、BeanNameAware-- setBeanName ");
+        System.out.println("[userService]6、BeanNameAware-- setBeanName ");
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        System.out.println("8、InitializingBean-- afterPropertiesSet ");
+        System.out.println("[userService]8、InitializingBean-- afterPropertiesSet ");
     }
 
     public void initDataMethod() {
@@ -81,6 +81,6 @@ public class UserService implements BeanFactoryAware, BeanClassLoaderAware, Bean
     }
 
     public void destroyMethod() {
-        System.out.println("context - destroy-method -- destroyMethod ");
+        System.out.println("[userService] 11、destroy-method -- destroyMethod ");
     }
 }

@@ -1,5 +1,6 @@
 package bdbk.springframework.test;
 import bdbk.springframework.context.support.ClassPathXmlApplicationContext;
+import bdbk.springframework.test.bean.UserService;
 import bdbk.springframework.test.event.CustomEvent;
 import org.junit.Test;
 
@@ -12,7 +13,8 @@ public class ApiTest {
     public void test_support(){
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring.xml");
         applicationContext.publishEvent(new CustomEvent(applicationContext, "监听成功了！"));
-
+        // 获取userService
+        applicationContext.getBean("userService", UserService.class);
         // 销毁方法
         applicationContext.registerShutdownHook();
     }

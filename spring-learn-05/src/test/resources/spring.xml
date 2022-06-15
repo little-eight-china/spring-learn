@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
-    <bean id="userService" class="bdbk.springframework.test.bean.UserService" init-method="initDataMethod" destroy-method="destroyMethod">
+    <bean id="userService" class="bdbk.springframework.test.bean.UserService" init-method="initDataMethod"
+          destroy-method="destroyMethod" lazy-init="true">
         <property name="age" value="18"/>
         <property name="name" value="mike"/>
     </bean>
