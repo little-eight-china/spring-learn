@@ -26,6 +26,7 @@
 - 处理init-method方法
 - 处理BeanPostProcessor后置处理器的after方法postProcessAfterInitialization
 - 返回bean
+- 处理FactoryBean对象
 
 从上面的步骤可以看到，从实例化bean跟属性填充的注入的前后，都做了一个比较全面的扩展。
 
@@ -309,6 +310,47 @@ private Object InitializeBean(String beanName, Object bean, BeanDefinition beanD
 			result = current;
 		}
 		return result;
+	}
+
+```
+
+** 处理FactoryBean对象 **
+在完全实例化bean以及填充bean后，还有一次机会是查看该bean是否为FactoryBean来处理
+
+```java
+public Object doGetBean(String name, Object[] args) throws BeansException {
+		BeanDefinition beanDefinition = getBeanDefinition(name);
+		if (beanDefinition.isSingleton()) {
+			Object bean = getSingleton(name);
+			if (bean == null) {
+				bean = createBean(name, beanDefinition, args);
+			}
+			// 给factoryBean注入机会
+			return getObjectForBeanInstance(bean, name);
+		} else {
+			Object bean = createBean(name, beanDefinition, args);
+			// 给factoryBean注入机会
+			return getObjectForBeanInstance(bean, name);
+		}
+	}
+
+```
+
+FactoryBean有自己的map进行维护
+```java
+private Object getObjectForBeanInstance(Object beanInstance, String beanName) {
+		if (!(beanInstance instanceof FactoryBean)) {
+			return beanInstance;
+		}
+
+		Object object = getCachedObjectForFactoryBean(beanName);
+
+		if (object == null) {
+			FactoryBean<?> factoryBean = (FactoryBean<?>) beanInstance;
+			object = getObjectFromFactoryBean(factoryBean, beanName);
+		}
+
+		return object;
 	}
 
 ```

@@ -15,6 +15,8 @@ public class UserService implements BeanFactoryAware, BeanClassLoaderAware, Bean
     private String name;
     private UserDao userDao;
 
+    private FactoryBeanInterface factoryBeanInstance;
+
     public UserService() {
     }
 
@@ -50,9 +52,10 @@ public class UserService implements BeanFactoryAware, BeanClassLoaderAware, Bean
 
     public void queryUserInfo(){
         if (getUserDao() == null) {
-            System.out.printf("查询用户信息：年龄: [%d], 名字: [%s]", getAge(), getName());
+            System.out.printf("查询用户信息：年龄: [%d], 名字: [%s], factoryBean:[%s]", getAge(), getName(), getFactoryBeanInstance().getFactoryBeanName());
         } else {
-            System.out.printf("查询用户信息：年龄: [%d], 名字: [%s]，dao：[%s]%n", getAge(), getName(), getUserDao().getName());
+            System.out.printf("查询用户信息：年龄: [%d], 名字: [%s]，dao：[%s], factoryBean:[%s]%n", getAge(), getName(),
+                    getUserDao().getName(), getFactoryBeanInstance().getFactoryBeanName());
         }
     }
 
@@ -78,5 +81,13 @@ public class UserService implements BeanFactoryAware, BeanClassLoaderAware, Bean
 
     public void initDataMethod() {
         System.out.println("9、init-method -- initDataMethod ");
+    }
+
+    public FactoryBeanInterface getFactoryBeanInstance() {
+        return factoryBeanInstance;
+    }
+
+    public void setFactoryBeanInstance(FactoryBeanInterface factoryBean) {
+        this.factoryBeanInstance = factoryBean;
     }
 }

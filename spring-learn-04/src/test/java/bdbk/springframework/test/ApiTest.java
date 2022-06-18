@@ -36,6 +36,7 @@ public class ApiTest {
 
         // 3. 获取Bean对象调用方法
         UserService userService = (UserService) beanFactory.getBean("userService", UserService.class);
+        userService.queryUserInfo();
         Assert.assertEquals("tony", userService.getName());
     }
 }

@@ -3,6 +3,9 @@
     <bean id="userService" class="bdbk.springframework.test.bean.UserService" init-method="initDataMethod">
         <property name="age" value="18"/>
         <property name="name" value="mike"/>
+        <property name="factoryBeanInstance" ref="factoryBean"/>
     </bean>
+
+    <bean id="factoryBean" class="bdbk.springframework.test.bean.ProxyBeanFactory"/>
 
 </beans>

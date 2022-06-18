@@ -11,6 +11,8 @@ import java.util.Map;
  */
 public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
 
+    protected static final Object NULL_OBJECT = new Object();
+
     private final Map<String, Object> singletonObjects = new HashMap<>();
 
     @Override

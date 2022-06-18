@@ -2,6 +2,7 @@ package bdbk.springframework.beans.factory.support;
 
 import bdbk.springframework.beans.exception.BeansException;
 import bdbk.springframework.beans.factory.BeanFactory;
+import bdbk.springframework.beans.factory.FactoryBean;
 import bdbk.springframework.beans.factory.config.BeanDefinition;
 import bdbk.springframework.beans.factory.config.BeanPostProcessor;
 import bdbk.springframework.util.ClassUtils;
@@ -15,7 +16,7 @@ import java.util.List;
  * @author little8
  * @since 2022-03-21
  */
-public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
+public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport implements BeanFactory {
 
 	/**
 	 * ClassLoader
@@ -42,13 +43,33 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 		if (beanDefinition.isSingleton()) {
 			Object bean = getSingleton(name);
 			if (bean == null) {
-				return createBean(name, beanDefinition, args);
+				bean = createBean(name, beanDefinition, args);
 			}
-			return bean;
+			// 给factoryBean注入机会
+			return getObjectForBeanInstance(bean, name);
 		} else {
-			return createBean(name, beanDefinition, args);
+			Object bean = createBean(name, beanDefinition, args);
+			// 给factoryBean注入机会
+			return getObjectForBeanInstance(bean, name);
+		}
+	}
+
+	/**
+	 * 处理普通Bean与FactoryBean的获取
+	 */
+	private Object getObjectForBeanInstance(Object beanInstance, String beanName) {
+		if (!(beanInstance instanceof FactoryBean)) {
+			return beanInstance;
 		}
 
+		Object object = getCachedObjectForFactoryBean(beanName);
+
+		if (object == null) {
+			FactoryBean<?> factoryBean = (FactoryBean<?>) beanInstance;
+			object = getObjectFromFactoryBean(factoryBean, beanName);
+		}
+
+		return object;
 	}
 
 
