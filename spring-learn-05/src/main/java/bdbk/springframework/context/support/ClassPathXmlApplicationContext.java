@@ -17,8 +17,8 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
     /**
      * 从 xml 中装载 beanDefinition，并刷新上下文
      */
-    public ClassPathXmlApplicationContext(String configLocations) throws BeansException {
-        this(new String[]{configLocations});
+    public ClassPathXmlApplicationContext(String configLocation) throws BeansException {
+        this(new String[]{configLocation});
     }
 
     /**
