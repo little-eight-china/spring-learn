@@ -1,9 +1,6 @@
 package bdbk.springframework.beans.factory;
 
-import bdbk.springframework.beans.PropertyValue;
-import bdbk.springframework.beans.PropertyValues;
 import bdbk.springframework.beans.exception.BeansException;
-import bdbk.springframework.beans.factory.config.BeanDefinition;
 import bdbk.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import bdbk.springframework.beans.factory.support.ConfigurableListableBeanFactory;
 import bdbk.springframework.core.io.DefaultResourceLoader;
@@ -43,19 +40,6 @@ public class PropertyPlaceholderConfigurer implements BeanFactoryPostProcessor {
             // 占位符替换属性值
             Properties properties = new Properties();
             properties.load(resource.getInputStream());
-
-            String[] beanDefinitionNames = beanFactory.getBeanDefinitionNames();
-            for (String beanName : beanDefinitionNames) {
-                BeanDefinition beanDefinition = beanFactory.getBeanDefinition(beanName);
-
-                PropertyValues propertyValues = beanDefinition.getPropertyValues();
-                for (PropertyValue propertyValue : propertyValues.getPropertyValues()) {
-                    Object value = propertyValue.getValue();
-                    if (!(value instanceof String)) continue;
-                    value = resolvePlaceholder((String) value, properties);
-                    propertyValues.addPropertyValue(new PropertyValue(propertyValue.getName(), value));
-                }
-            }
 
             // 向容器中添加字符串解析器，供解析@Value注解使用
             StringValueResolver valueResolver = new PlaceholderResolvingStringValueResolver(properties);

@@ -23,6 +23,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 
     public void doScan(String... basePackages) {
         for (String basePackage : basePackages) {
+            // 扫描带有@Component的类
             Set<BeanDefinition> candidates = findCandidateComponents(basePackage);
             for (BeanDefinition beanDefinition : candidates) {
                 // 解析 Bean 的作用域 singleton、prototype
