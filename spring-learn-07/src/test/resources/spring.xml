@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean class="bdbk.springframework.beans.factory.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:application.properties"/>
+    </bean>
+
+    <component-scan base-package="bdbk.springframework.test.bean"/>
+
+</beans>
