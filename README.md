@@ -29,3 +29,6 @@
 - [small-spring](https://github.com/fuzhengwei/small-spring)
 - [Spring源码](https://github.com/spring-projects/spring-framework)
 - 《Spring技术内幕-第2版》
+
+[![Stargazers repo roster for @little-eight-china/spring-learn](https://reporoster.com/stars/little-eight-china/spring-learn)](https://github.com/little-eight-china/spring-learn/stargazers)
+[![Forkers repo roster for @little-eight-china/spring-learn](https://reporoster.com/forks/little-eight-china/spring-learn)](https://github.com/little-eight-china/spring-learn/network/members)
