@@ -6,19 +6,19 @@ import bdbk.springframework.beans.exception.BeansException;
 import java.beans.PropertyDescriptor;
 
 /**
- * bean实例化
+ * bean实例化前后的扩展类
  * @author little8
  * @since 2022-06-12
  */
 public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 
     /**
-     * 在 Bean 对象执行初始化方法之前，执行此方法
+     * 在 Bean 对象执行实例化前，执行此方法
      */
     Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException;
 
     /**
-     * 在 Bean 对象执行初始化方法之后，执行此方法
+     * 在 Bean 对象执行实例化后，执行此方法
      */
     boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException;
 

@@ -3,8 +3,6 @@ package bdbk.springframework.test.support;
 import bdbk.springframework.beans.PropertyValues;
 import bdbk.springframework.beans.exception.BeansException;
 import bdbk.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
-import bdbk.springframework.test.bean.UserDao;
-import bdbk.springframework.test.bean.UserService;
 
 public class MyInstantiationAwareBeanPostProcessor implements InstantiationAwareBeanPostProcessor {
 
