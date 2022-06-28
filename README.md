@@ -24,6 +24,8 @@
 第五阶段，做应用上下文，更优雅地管理bean的生命周期。
 ### [spring-learn-06](https://github.com/little-eight-china/spring-learn/tree/main/spring-learn-06)
 第六个阶段，我想用的爽一点，所以先实现注解方式的注入，这样的话，我就不用大费周章地写spring.xml的信息，并且维护bean也更加方便。
+### [spring-learn-07](https://github.com/little-eight-china/spring-learn/tree/main/spring-learn-07)
+第七阶段，引入AOP。
 
 ## 参考
 - [small-spring](https://github.com/fuzhengwei/small-spring)
