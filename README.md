@@ -26,6 +26,8 @@
 第六个阶段，我想用的爽一点，所以先实现注解方式的注入，这样的话，我就不用大费周章地写spring.xml的信息，并且维护bean也更加方便。
 ### [spring-learn-07](https://github.com/little-eight-china/spring-learn/tree/main/spring-learn-07)
 第七阶段，引入AOP。
+### [spring-learn-08](https://github.com/little-eight-china/spring-learn/tree/main/spring-learn-08)
+第八个阶段，解决掉一个spring业界都闻名的bug：循环依赖
 
 ## 参考
 - [small-spring](https://github.com/fuzhengwei/small-spring)
