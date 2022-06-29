@@ -37,6 +37,13 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		Object bean;
 		try {
 			bean = createBeanInstance(beanDefinition, beanName, args);
+
+			// 处理循环依赖，将实例化后的Bean对象提前放入缓存中暴露出来
+			if (beanDefinition.isSingleton()) {
+				Object finalBean = bean;
+				addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, beanDefinition, finalBean));
+			}
+
 			// 实例化后判断
 			boolean continueWithPropertyPopulation = applyBeanPostProcessorsAfterInstantiation(beanName, bean);
 			if (!continueWithPropertyPopulation) {
@@ -245,4 +252,15 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		return result;
 	}
 
+	protected Object getEarlyBeanReference(String beanName, BeanDefinition beanDefinition, Object bean) {
+		Object exposedObject = bean;
+		for (BeanPostProcessor beanPostProcessor : getBeanPostProcessors()) {
+			if (beanPostProcessor instanceof SmartInstantiationAwareBeanPostProcessor) {
+				exposedObject = ((SmartInstantiationAwareBeanPostProcessor) beanPostProcessor).getEarlyBeanReference(exposedObject, beanName);
+				if (null == exposedObject) return exposedObject;
+			}
+		}
+
+		return exposedObject;
+	}
 }

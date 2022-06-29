@@ -10,13 +10,12 @@ import bdbk.springframework.stereotype.Component;
  * @since 2022-03-20
  */
 @Component
-public class UserService {
-
-    public String name = "UserService";
+public class UserService2 {
+    public String name = "UserService2";
     @Autowired
-    public UserService2 userService;
+    public UserService userService;
 
-    public UserService2 getService() {
+    public UserService getService() {
         return userService;
     }
 }

@@ -1,20 +1,31 @@
 package bdbk.springframework.test;
 import bdbk.springframework.context.support.ClassPathXmlApplicationContext;
-import bdbk.springframework.test.bean.UserServiceIntf;
+import bdbk.springframework.test.bean.UserService;
+import bdbk.springframework.test.bean.UserService2;
+import bdbk.springframework.test.bean.UserService3;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class ApiTest {
 
     /**
-     * 测试aop, 然后在spring.xml配好，针对userService的所有方法都会进行拦截
-     * 如果想测试cglib的代理，可以在bdbk.springframework.aop.AdvisedSupport#setProxyTargetClass(boolean)改成true即可
+     * 测试循环依赖，UserService与UUserService2相互注入依赖，都是单例，所以不会抛异常
      */
     @Test
-    public void test_aop(){
+    public void test_CircularDependency(){
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring.xml");
-        // 获取userService（jdk代理的话，在spring.xml以及接收都得用接口UserServiceIntf，不然就会有错误）
-        UserServiceIntf userService = applicationContext.getBean("userService", UserServiceIntf.class);
-        userService.query1();
-        userService.query2();
+        UserService userService = applicationContext.getBean("userService", UserService.class);
+        UserService2 userService2 = applicationContext.getBean("userService2", UserService2.class);
+        Assert.assertEquals(userService.userService.name, "UserService2");
+        Assert.assertEquals(userService2.userService.name, "UserService");
+    }
+
+    /**
+     * 测试循环依赖，UserService3与UUserService4相互注入依赖，都不是单例，所以会抛异常StackOverflowError
+     */
+    @Test(expected = StackOverflowError.class)
+    public void test_CircularDependency_Error(){
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring.xml");
+        applicationContext.getBean("userService3", UserService3.class);
     }
 }

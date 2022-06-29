@@ -10,7 +10,7 @@ import java.beans.PropertyDescriptor;
  * @author little8
  * @since 2022-06-22
  */
-public abstract class InstantiationAwareBeanPostProcessorAdapter implements InstantiationAwareBeanPostProcessor {
+public abstract class InstantiationAwareBeanPostProcessorAdapter implements SmartInstantiationAwareBeanPostProcessor {
     public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException {
         return null;
     }
@@ -24,6 +24,10 @@ public abstract class InstantiationAwareBeanPostProcessorAdapter implements Inst
     }
 
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        return bean;
+    }
+
+    public Object getEarlyBeanReference(Object bean, String beanName) throws BeansException {
         return bean;
     }
 }

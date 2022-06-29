@@ -27,7 +27,7 @@
 ### [spring-learn-07](https://github.com/little-eight-china/spring-learn/tree/main/spring-learn-07)
 第七阶段，引入AOP。
 ### [spring-learn-08](https://github.com/little-eight-china/spring-learn/tree/main/spring-learn-08)
-第八个阶段，解决掉一个spring业界都闻名的bug：循环依赖
+第八个阶段，解决掉一个spring业界闻名的bug：循环依赖
 
 ## 参考
 - [small-spring](https://github.com/fuzhengwei/small-spring)
