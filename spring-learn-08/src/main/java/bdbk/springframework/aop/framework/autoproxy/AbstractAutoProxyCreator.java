@@ -7,21 +7,26 @@ import bdbk.springframework.beans.PropertyValues;
 import bdbk.springframework.beans.exception.BeansException;
 import bdbk.springframework.beans.factory.BeanFactory;
 import bdbk.springframework.beans.factory.BeanFactoryAware;
-import bdbk.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
+import bdbk.springframework.beans.factory.config.SmartInstantiationAwareBeanPostProcessor;
 import bdbk.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.aopalliance.aop.Advice;
 import org.aopalliance.intercept.MethodInterceptor;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 自动创建的代理对象的抽象类
  * @author little_eight
  * @since 2022/6/26
  */
-public abstract class AbstractAutoProxyCreator implements InstantiationAwareBeanPostProcessor, BeanFactoryAware {
+public abstract class AbstractAutoProxyCreator implements SmartInstantiationAwareBeanPostProcessor, BeanFactoryAware {
 
     private DefaultListableBeanFactory beanFactory;
+
+    private final Set<Object> earlyProxyReferences = Collections.synchronizedSet(new HashSet<>());
 
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
@@ -75,6 +80,40 @@ public abstract class AbstractAutoProxyCreator implements InstantiationAwareBean
 
 
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        if (!earlyProxyReferences.contains(beanName)) {
+            return wrapIfNecessary(bean);
+        }
+        return bean;
+    }
+
+    public Object getEarlyBeanReference(Object bean, String beanName) throws BeansException {
+        if (!earlyProxyReferences.contains(beanName)) {
+            earlyProxyReferences.add(beanName);
+        }
+        return wrapIfNecessary(bean);
+    }
+
+    protected Object wrapIfNecessary(Object bean) {
+        if (isInfrastructureClass(bean.getClass())) return bean;
+
+        Collection<AspectJExpressionPointcutAdvisor> advisors = beanFactory.getBeansOfType(AspectJExpressionPointcutAdvisor.class).values();
+
+        for (AspectJExpressionPointcutAdvisor advisor : advisors) {
+            ClassFilter classFilter = advisor.getPointcut().getClassFilter();
+            // 过滤匹配类
+            if (!classFilter.matches(bean.getClass())) continue;
+
+            ProxyFactory proxyFactory = new ProxyFactory();
+
+            TargetSource targetSource = new TargetSource(bean);
+            proxyFactory.setTargetSource(targetSource);
+            proxyFactory.setMethodInterceptor((MethodInterceptor) advisor.getAdvice());
+            proxyFactory.setMethodMatcher(advisor.getPointcut().getMethodMatcher());
+            proxyFactory.setProxyTargetClass(true);
+
+            // 返回代理对象
+            return proxyFactory.getProxy();
+        }
 
         return bean;
     }

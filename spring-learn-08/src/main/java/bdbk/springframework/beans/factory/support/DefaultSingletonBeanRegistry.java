@@ -31,7 +31,7 @@ public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
     protected final Map<String, Object> earlySingletonObjects = new HashMap<>();
 
     /**
-     * 三级缓存，存放工厂对象
+     * 三级缓存，存放对象工厂，存储可能是SmartInstantiationAwareBeanPostProcessor这种东西产生的未知的bean，业界都叫代理
      */
     private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>();
 
