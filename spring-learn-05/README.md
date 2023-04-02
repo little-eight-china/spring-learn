@@ -93,7 +93,7 @@ protected Object doCreateBean(String beanName, BeanDefinition beanDefinition, Ob
 	}
 ```
 
-还有基于原生的java.util.EventObject、java.util.EventListener来实现应用上下文的监听事件，让用户自己去处理感兴趣的事件。
+还有基于原生的java.util.EventObject、java.util.EventListener来实现应用上下文的监听事件，让用户自己去处理感兴趣的事件(Spring 中预定义了很多事件类型，如ContextRefreshedEvent、ContextStartedEvent、ContextStoppedEvent 等)。
 应用上下文最核心的方法refresh(),从注释便可看出执行了什么
 ```java
 public abstract class AbstractApplicationContext extends DefaultResourceLoader implements ConfigurableApplicationContext {
