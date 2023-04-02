@@ -15,8 +15,7 @@
 
 
 现在加点扩展的东西：
-- 实例化bean前，处理InstantiationAwareBeanPostProcessor接口(postProcessBeforeInstantiation)、BeanPostProcessors的postProcessAfterInitialization
-- 实例化bean
+- 实例化bean前，处理InstantiationAwareBeanPostProcessor接口(postProcessBeforeInstantiation)
 - 实例化bean后，处理InstantiationAwareBeanPostProcessor接口(postProcessAfterInstantiation)
 - 属性注入前，处理InstantiationAwareBeanPostProcessor接口(postProcessPropertyValues)
 - 属性注入
